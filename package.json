@@ -1,0 +1,17 @@
+{
+  "author": "mercury <alexcgilliland@gmail.com>",
+  "name": "buffer_socket",
+  "description": "collect outgoing socket events and send as a group.",
+  "version": "0.0.0",
+  "readme":"README",
+  "repository": {
+    "url": ""
+  },
+  "main": "index.coffee",
+  "engines": {
+    "node": "~0.6.1 || 0.6.1-pre"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {}
+}

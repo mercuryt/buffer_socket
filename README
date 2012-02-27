@@ -1,0 +1,28 @@
+function:
+  make the socket.io socket object buffer messages into batches.
+
+motivation:
+  take the burden off the application developer to manually bundle data to be sent through the socket.  the developer must only specify what is to be sent.
+
+implimentation:
+  a socket object is passed to the 'patch' function, which wraps the emit method and adds a few helpers as well as a responder, listening for '__buffer'.  the patched emit function collects messages into an array, sending them when the oldest has reaced config.max_delay or a message is sent with a first argument of 'priority', which causes the buffer to flush, with the remander of the emit arguments added it's end.
+
+usage:
+  server:
+    patch=require('buffer_socket').patch
+    io.sockets.on 'connection',(socket)->
+      patch socket
+      (continue to configure responders as usual)
+  client:
+    patch=require('buffer_socket').patch
+    socket=io.connect url+':'+socket_number
+    patch socket
+
+configuration:
+  the module exports a config object, with properties 'max_delay' and 'overwrite_emit'
+  max_delay:
+    the maximum time a message will be delayed before being sent to the other end
+    defaults to 1000 miliseconds
+  overwrite_emit:
+    overwrites the socket's 'emit' method to use buffering.  insert 'priority' into the begining of an emit event to send it  immideatly, and flush the buffer.  use buffer_emit if overwrite_emit is false
+    defaults to true
