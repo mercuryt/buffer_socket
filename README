@@ -1,3 +1,5 @@
+npm install buffer_socket
+
 function:
   make the socket.io socket object buffer messages into batches.
 
