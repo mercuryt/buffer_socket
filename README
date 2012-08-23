@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/mercuryt/buffer_socket.png)](http://travis-ci.org/mercuryt/buffer_socket)
 npm install buffer_socket
 
 function:
